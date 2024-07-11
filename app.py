@@ -1,5 +1,8 @@
 # Import all necessary packages
 import streamlit as st
+import plotly.express as px
+import pandas as pd
+
 
 # Write a function to calculate EMI
 def loanCalc(P, N, R):
@@ -45,6 +48,15 @@ def application():
         st.write(f"**Interest** : {I:.0f} INR")
         st.write(f"**Total Amount** : {amt:.0f} INR")
         st.write(f"**Percentage Interest** : {perI:.2f} %")
+        # Plot
+        st.subheader("Visualization :")
+        d = {"details": ["Principal", "Interest"],
+             "values" : [P, I]}
+        d = pd.DataFrame(d)
+        fig = px.pie(data_frame=df, names="details", values="values")
+        st.plotly_chart(fig)
+
+
 
 # Main application below
 if __name__ == "__main__":
