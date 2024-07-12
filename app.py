@@ -50,10 +50,13 @@ def application():
         st.write(f"**Percentage Interest** : {perI:.2f} %")
         # Plot
         st.subheader("Visualization :")
-        d = {"details": ["Principal", "Interest"],
-             "values" : [P, I]}
-        d = pd.DataFrame(d)
-        fig = px.pie(data_frame=df, names="details", values="values")
+        d = {"Details": ["Principal", "Interest"],
+             "Values" : [P, I]}
+        df = pd.DataFrame(d)
+        fig = px.pie(data_frame=df, 
+                     names="Details", 
+                     values="Values",
+                     color_discrete_sequence=["green", "orange"])
         st.plotly_chart(fig)
 
 
